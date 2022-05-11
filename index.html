@@ -4,30 +4,20 @@
         .myHeading {
           color: red;
         }
-        .item {
-            box-shadow: 1px 1px 2px grey;
-            border: 1px solid grey;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            padding: 5px;
-            height: 20px;
-            cursor: pointer;
+        .bg {
+          background-color: green;
         }
-        .selected {
-            box-shadow: 2px 2px 4px grey;
-            background-color: darkkhaki;
-        }
+        
       </style>
     </head>
     <body>
-      <div id="firstPara">
-        <h1>This is the title of the page</h1>
-        <button onclick="changeTitle()">Click here to change title</button>
+      <div>
+        <h1 class="myClass">This is the title of the page<h1>
         <h2>This is the subtitle of the page</h2>
       </div>
   
       <div>
-        <hr />
+        <hr/>
   
         <ul id="firstList">
           <li>1st</li>
@@ -36,30 +26,23 @@
         </ul>
   
         <ul id="secondList">
-            <input id="second-list-input"  type="text"/>
-            <button onclick="addToTheSecond()">Click here</button>
-            <button onclick="addToTheSecond()">Click here</button>
-            <li class="item">1st</li>
-            <li class="item">2nd</li>
-            <li class="item">3rd</li>
+            <li>1st</li>
+            <li>2nd</li>
+            <li>3rd</li>
         </ul>
   
         <a href="strive.school">This link goes to Strive School</a>
   
-        <div class="pChildren">
+        <div>
           <p>This text is just for the exercise</p>
         </div>
   
         <div>
-          <input
-            type="text"
-            id="input-field"
-            placeholder="input field for the exercise"
-          />
+          <input type="text" id="input-field" placeholder="input field for the exercise"/>
         </div>
       </div>
   
-      <div>
+      <div class="footer">
         <p>And this text is just for the exercise too!</p>
         <h2 style="color: red">
           Save this page on your computer and open it with VSCode to get the
@@ -72,12 +55,10 @@
         */
   
         const changeTitle = function (newTitle) {
-
-            let titleChangeNode = document.querySelector('h1')
-            
-            titleChangeNode.innerText = "This is Ganesh's Webpage"
-          //
-        };
+                let title = document.querySelector("h1");
+                title.innerText = newTitle;
+          };
+          changeTitle("new title");
   
         /* EXERCISE 2
          Write a function for changing the class of the title of the page in "myHeading".
@@ -85,26 +66,23 @@
   
         const addClassToTitle = function () {
 
-            let classAddNode = document.getElementsByClassName("myHeading");
-            classAddNode.classList.add("myHeading")
-
-            
-        
-
-          //
+            let title = document.querySelector("h1");
+            title.classList.remove("myClass")
+            title.classList.add("myHeading")
         };
+        addClassToTitle ()
   
         /* EXERCISE 3
          Write a function for changing the text of only the p which are children of a div.
         */
   
         const changePcontent = function () {
-            let pContentNode = document.querySelector('p')
-
-            pContentNode.innerText = "Ganesh is a hardworking person"
-
-          //
+            let pContent = document.querySelectorAll('div p')
+            for (let  i = 0; i < pContent.length; i++) {
+                pContent[i].innerText = "Ganesh is a hardworking person"
+            }
         };
+        changePcontent ()
   
         /* EXERCISE 4
          Write a function for changing the href property of every link to https://www.google.com
@@ -112,30 +90,25 @@
   
         const changeUrls = function () {
 
-        let urlChangeNode = document.querySelector('a')
-        urlChangeNode.href="https://www.google.com";
-        urlChangeNode.innerText = "This links goes to google"
-          //
+        let urlChange = document.querySelectorAll('a')
+        for (let i = 0; i < urlChange.length; i++){
+          urlChange[i].href="https://www.google.com";
+          urlChange[i].innerText = "This links goes to google"
+        }
         };
+        changeUrls()
   
         /* EXERCISE 5
          Write a function for adding a new list item in the second unordered list.
         */
   
         const addToTheSecond = function (content) {
-            let textInput = document.getElementById("second-list-input").value
-
-            newItemNode = document.createElement('ul')
-
-       
-            newItemNode.innerText = textInput
-            newItemNode.classList.add('item')
-
-            document.getElementById('secondList').appendChild(newItemNode)
-
-
-          //
+            let ul = document.querySelectorAll("ul")[1];
+            let li = document.createElement("li")
+            li.innerText = "new item"
+            ul.appendChild(li)
         };
+        addToTheSecond ("new item")
   
         /* EXERCISE 6
          Write a function for adding a second paragraph to the first div.
@@ -143,13 +116,13 @@
   
         const addParagraph = function (content) {
 
-        let ParaNode = document.getElementById("fisrtPara")
-        newItemNode = document.createElement('p')
-        paraNode.innerText = "asefghyjksdfghjkjk,hsdfghhjksfghjkl"
-        paraNode.classList.add('pChildren')
-        document.getElementById('fisrtPara').appendChild(newItemNode)
-          //
+          let div = document.querySelectorAll("div")[0]
+          let p = document.createElement("p")
+          p.innerText = content
+          div.appendChild(p)
         };
+        addParagraph ("Ganesh new paragraph")
+
   
         /* EXERCISE 7
          Write a function for making the first unordered list disappear.
@@ -157,46 +130,64 @@
   
         const firstUlDisappear = function () {
 
-            let itemsToDelete = document.getElementsByClassName('selected')
-            for (let i = 0; i < itemsToDelete.length; i++) {
-                let item = itemsToDelete[i]
-                item.hidden = true 
+            let hide = document.getElementById("firstList")
+            hide.style.visibility = "hidden"
         }
-        }
+        //firstUlDisappear()
 
-          //
   
         /* EXERCISE 8
          Write a function for making the background of every unordered list green.
         */
   
         const paintItGreen = function () {
-          //
+          const green = document.querySelectorAll("ul")
+          for (let i = 0; i < green.length; i++) {
+              green[i].style.backgroundColor = "green"
+          }
         };
+
+        paintItGreen()
   
         /* EXERCISE 9
          Make the heading of the page change color every time the user clicks on it.
         */
   
         const makeItClickable = function () {
-            let 
-          //
-        };
+          let title = document.querySelector("h1");
+          title.addEventListener("click", function(e) {
+            e.target.classList.toggle("myHeading")
+          })
+            
+        }
+        makeItClickable()
+        
   
         /* EXERCISE 10
          Change the footer text with something else when the user clicks on it.
         */
   
         const changeFooterText = function () {
-          //
-        };
+          const footer = document.querySelector(".footer")
+          footer.addEventListener("click", function (e) {
+            e.target.innerText = "something else"
+          })
+
+        }
+        changeFooterText() 
   
         /* EXERCISE 11
          Attach an event listener to the input field in the page for console logging its value just after any keystroke.
         */
-  
-        const inputField = document.getElementById("input-field");
-        // ...
+        const keyDown = function(){
+          const inputField = document.getElementById("input-field");
+          inputField.addEventListener("keydown", function (e){
+            e.target.value = "Ganesh"
+          })
+        }
+
+        keyDown()
+        
   
         /* EXERCISE 12
          Create a welcome alert message when the page successfully loads.
